@@ -52,7 +52,7 @@ button {
 `;
 
 export const Conteiner = styled.section`
-    max-width: 360px;
+    max-width: 480px;
     background: #fff;
     color: #333;
 
