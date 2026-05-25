@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { isEmail } from 'validator'
+import { isEmail } from 'validator';
 import { get } from 'lodash';
 
 import { Conteiner } from '../../styles/GlobalStyles';
@@ -19,7 +19,7 @@ export default function Register() {
 
         if (nome.length < 3 || nome.length > 255) {
             formErrors = true;
-            toast.error('Nome deve ter entre 3 e 255 caacteres');
+            toast.error('Nome deve ter entre 3 e 255 caracteres');
         }
         
         if (!isEmail(email)) {
@@ -29,7 +29,7 @@ export default function Register() {
         
         if (password.length < 3 || password.length > 50) {
             formErrors = true;
-            toast.error('Senha deve ter entre 6 e 50 caacteres');
+            toast.error('Senha deve ter entre 6 e 50 caracteres');
         }
 
         if (formErrors) return;
@@ -72,7 +72,7 @@ export default function Register() {
              type='email'
              value={email} 
              onChange={e => setEmail(e.target.value)}
-             placeholder='Seu e=mail'
+             placeholder='Seu e-mail'
              />
           </label>    
 
