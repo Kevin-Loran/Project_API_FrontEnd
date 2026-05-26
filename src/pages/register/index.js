@@ -9,6 +9,7 @@ import axios from '../../services/axios';
 import history from '../../services/history';
 
 export default function Register() {
+    const [isLoading, setIsLoading] = useState(false);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -35,6 +36,7 @@ export default function Register() {
         if (formErrors) return;
 
         try {
+            setIsLoading(true);
             await axios.post('/users/', {
                 nome,
                 password,
@@ -45,8 +47,9 @@ export default function Register() {
             history.push('/login');
         } catch(e) {
             const errors = get(e, 'response.data.errors', []);
-
             errors.map(error => toast.error(error));
+        } finally {
+            setIsLoading(false);
         }
 
     }
@@ -86,7 +89,9 @@ export default function Register() {
              />
           </label>    
           
-          <button type='submit'>Criar minha conta</button>
+          <button type='submit' disabled={isLoading}>
+            {isLoading ? 'Aguarde...' : 'Criar minha conta'}
+            </button>
         </ Form>
       </ Conteiner>
     )

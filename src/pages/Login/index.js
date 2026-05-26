@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { get } from 'lodash';
 
 import { Conteiner } from '../../styles/GlobalStyles';
@@ -10,6 +10,7 @@ import * as action from '../../store/modules/auth.js/actions'
 
 export default function Login(props){
     const dispatch = useDispatch();
+    const isLoading = useSelector(state => state.auth.isLoading);
 
     const prevPath = get(props, 'location.state.prevPath', '/')
 
@@ -53,7 +54,9 @@ export default function Login(props){
                 onChange={e => setPassword(e.target.value)}
                 placeholder='Seu senha'
              />
-             <button type='submit'>Acessar</button>
+             <button type='submit' disabled={isLoading}>
+                {isLoading ? 'Aguarde...' : 'Acessar'}
+                </button>
             </Form>
       </ Conteiner>
     );
