@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
-import { get } from 'lodash';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Conteiner } from '../../styles/GlobalStyles';
 import { Form } from './styled';
-import axios from '../../services/axios';
-import history from '../../services/history';
+import * as actions from '../../store/modules/auth.js/actions'
+
 
 export default function Register() {
+    const dispatch = useDispatch();
+
+    const id = useSelector(state => state.auth.user.id);
+    const nomeStored = useSelector(state => state.auth.user.nome);
+    const emailStored = useSelector(state => state.auth.user.email);
+
     const [isLoading, setIsLoading] = useState(false);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    React.useEffect(() => {
+
+        setNome(nomeStored);
+        setEmail(emailStored);
+    }, [emailStored, id, nomeStored]);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -28,35 +40,19 @@ export default function Register() {
             toast.error('E-mail inválido.');
         }
         
-        if (password.length < 3 || password.length > 50) {
+        if (!id && (password.length < 3 || password.length > 50)) {
             formErrors = true;
             toast.error('Senha deve ter entre 6 e 50 caracteres');
         }
 
         if (formErrors) return;
 
-        try {
-            setIsLoading(true);
-            await axios.post('/users/', {
-                nome,
-                password,
-                email,
-            });
-
-            toast.success('Voce fez seu cadastro');
-            history.push('/login');
-        } catch(e) {
-            const errors = get(e, 'response.data.errors', []);
-            errors.map(error => toast.error(error));
-        } finally {
-            setIsLoading(false);
-        }
-
+        dispatch(actions.registerRequest({nome, email, password, id}))
     }
 
     return (
         <Conteiner>
-          <h1>Crie sua conta</h1>
+          <h1>{id ? `Editar dados` : `Crie sua conta`}</h1>
 
         <Form onSubmit={handleSubmit}>
           <label htmlFor='nome'>
