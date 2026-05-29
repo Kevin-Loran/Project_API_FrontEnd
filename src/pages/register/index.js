@@ -11,9 +11,9 @@ import * as actions from '../../store/modules/auth.js/actions'
 export default function Register() {
     const dispatch = useDispatch();
 
-    const id = useSelector(state => state.auth.user.id);
-    const nomeStored = useSelector(state => state.auth.user.nome);
-    const emailStored = useSelector(state => state.auth.user.email);
+    const id = useSelector(state => state.auth?.user?.id);
+    const nomeStored = useSelector(state => state.auth?.user?.nome);
+    const emailStored = useSelector(state => state.auth?.user?.email);
 
     const [isLoading, setIsLoading] = useState(false);
     const [nome, setNome] = useState('');
@@ -22,8 +22,8 @@ export default function Register() {
 
     React.useEffect(() => {
 
-        setNome(nomeStored);
-        setEmail(emailStored);
+        setNome(nomeStored || '');
+        setEmail(emailStored || '');
     }, [emailStored, id, nomeStored]);
 
     async function handleSubmit(e) {
