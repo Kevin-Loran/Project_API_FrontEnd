@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { isEmail, isInt, isFloat } from 'validator';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle, FaEdit } from 'react-icons/fa';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 
 import axios from '../../services/axios';
 import history from '../../services/history';

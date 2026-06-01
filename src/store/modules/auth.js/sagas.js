@@ -52,7 +52,7 @@ function* registerRequest({ payload }) {
             history.push('/login');
         }
     } catch (e) {
-        const errors = get(e, 'response.data.error', []);
+        const errors = get(e, 'response.data.errors', []);
         const status = get(e, 'response.status', 0);
 
         if (status === 401) {
@@ -63,7 +63,7 @@ function* registerRequest({ payload }) {
         }
 
         if (errors.length > 0) {
-            errors.map(error => toast.error(error));
+            errors.forEach(error => toast.error(error));
         } else {
             toast.error('Erro desconhecido.');
         }
