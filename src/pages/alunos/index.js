@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa';
 
 import { Conteiner } from '../../styles/GlobalStyles';
-import { AlunosConteiner, Profilepicture } from './styled';
+import { AlunosConteiner, Profilepicture, NovoAluno } from './styled';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';
 
@@ -59,6 +59,9 @@ export default function Alunos() {
     <Conteiner>
       <h1>alunos</h1>
 
+        <NovoAluno to="/aluno/">Novo aluno</NovoAluno>
+
+
       <AlunosConteiner>
         {alunos.map((aluno, index) => {
           const foto = get(aluno, 'Fotos[0].url', false);
@@ -86,8 +89,7 @@ export default function Alunos() {
 
               <FaExclamation 
               size={16}
-               style={{ display: 'none' }}
-               cursor="pointer"
+               style={{ display: 'none', cursor: 'pointer' }}
                onClick={e => handleDelete(e, aluno.id, index)}
                />
             </div>
