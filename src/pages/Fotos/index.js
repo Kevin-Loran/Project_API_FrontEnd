@@ -11,7 +11,7 @@ import axios from '../../services/axios';
 import history from '../../services/history';
 
 
-export default function fotos(match){
+export default function Fotos({ match }){
     const id = get(match, 'params.id', '');
     const [foto, setFoto] = useState('');
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function fotos(match){
     React.useEffect(() => {
         const getData = async () => {
             try {
-                const {data} = await axios.get(`/aluno/${id}`);
+                const {data} = await axios.get(`/alunos/${id}`);
                 setFoto(get(data, 'Fotos[0].url', ''));
             } catch (err) {
                 toast.error('Erro ao obter imagem');
@@ -42,7 +42,7 @@ export default function fotos(match){
 
         try {
             await axios.post('/fotos/', formData, {
-                'Content-Type' : 'multipart/form-data',
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
 
             toast.success('Foto enviada com sucesso!');
@@ -68,6 +68,6 @@ export default function fotos(match){
     );
 }
 
-Fotos.PropTypes = {
+Fotos.propTypes = {
     match: PropTypes.shape({}).isRequired,
 };
