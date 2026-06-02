@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Frontend da API_REST
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto é o frontend de uma aplicação para gerenciar alunos e usuários, consumindo uma API REST construída com Node.js e Express. Foi desenvolvido como projeto de estudo seguindo um curso de JavaScript e React.
 
-## Available Scripts
+## Sobre o projeto
 
-In the project directory, you can run:
+A ideia é simples: uma interface onde você consegue criar uma conta, fazer login, gerenciar alunos (criar, editar, excluir e adicionar fotos), tudo integrado com uma API rodando na nuvem do Google Cloud.
 
-### `npm start`
+## Tecnologias utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* React 17
+* Redux com Redux Saga e Redux Persist
+* Axios para comunicação com a API
+* Styled Components para estilização
+* React Router v5 para navegação
+* React Toastify para notificações
+* Validator para validação de formulários
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Funcionalidades
 
-### `npm test`
+* Cadastro e login de usuários
+* Edição de perfil
+* Listagem de alunos
+* Cadastro e edição de alunos
+* Upload de foto de perfil para cada aluno
+* Exclusão de alunos com confirmação
+* Logout
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como rodar localmente
 
-### `npm run build`
+Antes de tudo você precisa ter o Node.js instalado na sua máquina.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone o repositório e instale as dependências:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Inicie o servidor de desenvolvimento:
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+A aplicação vai abrir em `http://localhost:3000`. O proxy já está configurado para apontar para a API em produção.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deploy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+O projeto está hospedado em uma VM do Google Cloud. O nginx serve os arquivos estáticos na porta 8080 e faz proxy das requisições para a API que roda na porta 3001.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+http://34.95.208.101:8080
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Estrutura do projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+  components/     Componentes reutilizáveis (Header)
+  pages/          Páginas da aplicação
+    Login/
+    register/
+    aluno/        Cadastro e edição de aluno
+    alunos/       Listagem de alunos
+    Fotos/        Upload de foto
+    page404/
+  services/       Configuração do axios e history
+  store/          Redux (actions, reducers, sagas)
+  styles/         Estilos globais
+  Routes/         Configuração de rotas
+```
 
-### Code Splitting
+## Autor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Kevin Loran
