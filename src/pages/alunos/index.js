@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 
 export default function Alunos() {
   const [alunos, setAlunos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function getData() {
