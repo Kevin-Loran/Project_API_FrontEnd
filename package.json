@@ -32,11 +32,14 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "import/no-anonymous-default-export": "off"
+  }
+},
   "homepage": "/",
   "proxy": "http://34.95.208.101",
   "browserslist": {
